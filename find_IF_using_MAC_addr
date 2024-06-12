@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# find_IF_using_MAC_addr
+# 
+# This script finds the network interface corresponding to a given MAC address.
+# Usage: ./find_IF_using_MAC_addr <TARGET_MAC>
+# 
+# Arguments:
+#   TARGET_MAC - The MAC address to search for.
+#
+# Output:
+#   If a network interface with the specified MAC address is found, the script
+#   outputs the name of the network interface and exits with a status code of 0.
+#   If no matching interface is found, the script exits with a status code of 1.
+#
+# Example:
+#   ./find_IF_using_MAC_addr xx:xx:xx:xx:xx:xx
+#
+# Maintainer:
+#   Qucheng Jiang
+# 
+
+TARGET_MAC=$1
+
+# get all interfaces
+ALL_INTERFACES=$(ip link show | grep -Eo '^[0-9]+: [^:]+:' | cut -d' ' -f2 | tr -d ':')
+
+# search for first interface with specific MAC address
+for IFACE in $ALL_INTERFACES; do
+    if [ -f /sys/class/net/$IFACE/address ]; then
+        MAC=$(cat /sys/class/net/$IFACE/address)
+        if [ "$MAC" == "$TARGET_MAC" ]; then
+            echo $IFACE
+            exit 0
+        fi
+    fi
+done
+
+exit 1
