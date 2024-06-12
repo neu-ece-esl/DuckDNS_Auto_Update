@@ -1,8 +1,9 @@
-# DuckDNS_Auto_Update
-Update DuckDNS with the current local IP address (before NAT) of a specific physical port. 
-Default Public IP may not work correctly if the target machine is behind a NAT gateway. 
+# DuckDNS Auto Update
+Update DuckDNS with a selected physical port's current local IP address (before NAT). 
 
 ## Observation
+Default Public IP may not work correctly if the target machine is behind a NAT gateway. 
+
 XXX is a machine behind our NAT gateway. If we leave `&ip=` with no address specified, duckdns will retrieve the public IP address from the connection that connects to their server, which is some random address from our network gateway. This address is not allowed for inbound connections, meaning this DDNS config will not work. 
 
 ## Patch mechanism
