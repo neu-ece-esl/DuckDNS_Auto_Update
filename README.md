@@ -25,10 +25,12 @@ On XXX, the DuckDns update routine is settled using the following script:
     ├── domain
     ├── token
     ├── if_mac_addr
-    └── interface (optional)
+    └── interface
 ```
 
 ### Configuration Files
+For example, check `./.example-domain/*` for detail.
+
 #### domain
 ```
 XXX.duckdns.org

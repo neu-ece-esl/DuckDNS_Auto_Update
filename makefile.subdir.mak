@@ -61,11 +61,11 @@ $(Log_Save_Path):
 
 # Remove old log files that are older than Log_Save_Days
 remove_old_log:
-	find $(dir $(Log_Save_Path)) -name "*.log" -mtime +$(Log_Save_Days) -exec rm -f {} \;
+	-find $(dir $(Log_Save_Path)) -name "*.log" -mtime +$(Log_Save_Days) -exec rm -f {} \;
 
 # Remove old log directories that are older than Log_Save_Days
 remove_old_log_dirs:
-	find $(dir $(Log_Save_Path)) -type d -mtime +$(Log_Save_Days) -exec rm -rf {} \;
+	-find $(dir $(Log_Save_Path)) -type d -mtime +$(Log_Save_Days) -exec rm -rf {} \;
 
 # Define phony targets to avoid conflicts with file names
 .PHONY: remove_old remove_old_log remove_old_log_dirs update_ddns all
