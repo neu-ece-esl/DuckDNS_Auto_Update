@@ -14,8 +14,8 @@ Duck_Token := $(shell cat token)
 # Get current IP address based on IF_MAC
 # IP_IF_MAC_ADDR -> IP_INTERFACE (name) -> IP_ADDR
 IP_IF_MAC_ADDR ?= $(shell cat if_mac_addr)
-# IP_INTERFACE := $(shell ../find_IF_using_MAC_addr $(IP_IF_MAC_ADDR))
-IP_INTERFACE := $(if $(IP_INTERFACE),$(IP_INTERFACE),$(shell cat interface))
+IP_INTERFACE := $(shell ../find_IF_using_MAC_addr $(IP_IF_MAC_ADDR))
+IP_INTERFACE ?= $(if $(IP_INTERFACE),$(IP_INTERFACE),$(shell cat interface))
 IP_ADDR := $(shell ip addr show $(IP_INTERFACE) | grep 'inet ' | awk '{{print $$2}}' | cut -d'/' -f1 | head -n 1)
 
 # Combine the obtained details into a URL string for DuckDNS update
