@@ -59,5 +59,5 @@ _* This file is optional and will only be used if the MAC address is not matched
 Config changed using command `crontab -e`.
 Here, we update the IP in every 10 minutes.
 ```
-*/10 * * * * cd /home/<service_user>/service/duckdns/ && make; >/dev/null 2>&1
+*/10 * * * * cd /home/<service_user>/service/duckdns/ && make >/dev/null 2>&1
 ```
